@@ -2,20 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'cadastro/cadastro-tarefa-page.dart';
+
 class ListaTarefas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lista de Tarefas'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/formTarefa');
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
       ),
       body: FutureBuilder(
         future: _buscarDados(),
@@ -51,12 +45,21 @@ class ListaTarefas extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CadastroTarefaPage()),
+          );
+        },
+      ),
     );
   }
 
   Future<List<Map<String, Object?>>> _buscarDados() async {
     String path = join(await getDatabasesPath(), 'task_list');
-    deleteDatabase(path);
+    // deleteDatabase(path);
     Database dataBase = await openDatabase(
       path,
       version: 1,
