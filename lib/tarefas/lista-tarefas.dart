@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lista_tarefas/tarefas/tarefa.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'cadastro/cadastro-tarefa-page.dart';
+import 'info-tarefa-page.dart';
 
 class ListaTarefas extends StatelessWidget {
   @override
@@ -24,6 +26,9 @@ class ListaTarefas extends StatelessWidget {
             itemCount: listaTarefas.length,
             itemBuilder: (context, index) {
               var tarefa = listaTarefas[index];
+              Tarefa task = Tarefa(
+                  nome: tarefa['nome'].toString(),
+                  descricao: tarefa['descricao'].toString());
 
               return Card(
                 elevation: 4,
@@ -39,6 +44,14 @@ class ListaTarefas extends StatelessWidget {
                   title: Text(tarefa['nome'].toString()),
                   subtitle: Text(tarefa['descricao'].toString()),
                   trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => InfoTarefaPage(task),
+                      ),
+                    );
+                  },
                 ),
               );
             },
