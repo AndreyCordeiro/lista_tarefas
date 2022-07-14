@@ -11,37 +11,35 @@ class BotaoExcluir extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        SizedBox(
-          width: 100,
-          child: ElevatedButton(
-            onPressed: () => showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text('Excluir Tarefa'),
-                content: const Text(
-                    'Tem certeza que realmente deseja excluir esta Tarefa?'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancelar'),
-                    child: const Text('Cancelar'),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      _excluir(tarefa!.nome, tarefa!.descricao);
-                      Navigator.pop(context, 'OK');
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
-              ),
+    return Center(
+      child: SizedBox(
+        width: 100,
+        child: ElevatedButton(
+          onPressed: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Excluir Tarefa'),
+              content: const Text(
+                  'Tem certeza que realmente deseja excluir esta Tarefa?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Cancelar'),
+                  child: const Text('Cancelar'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    _excluir(tarefa!.nome, tarefa!.descricao);
+                    Navigator.pop(context, 'OK');
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
             ),
-            style: ElevatedButton.styleFrom(primary: Colors.red),
-            child: const Text("Excluir"),
           ),
+          style: ElevatedButton.styleFrom(primary: Colors.red),
+          child: const Text("Excluir"),
         ),
-      ],
+      ),
     );
   }
 

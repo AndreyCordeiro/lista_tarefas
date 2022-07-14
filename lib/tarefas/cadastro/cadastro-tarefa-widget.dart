@@ -50,13 +50,18 @@ class CadastroTarefa extends State<CadastroTarefaPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _salvar(nome!, descricao!);
-                  }
-                },
-                child: const Text('Salvar'),
+              child: Center(
+                child: SizedBox(
+                  width: 100,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _salvar(nome!, descricao!);
+                      }
+                    },
+                    child: const Text('Salvar'),
+                  ),
+                ),
               ),
             ),
           ],
