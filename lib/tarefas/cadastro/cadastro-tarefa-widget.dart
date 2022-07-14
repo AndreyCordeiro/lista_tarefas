@@ -38,11 +38,11 @@ class CadastroTarefa extends State<CadastroTarefaPage> {
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
                 decoration: const InputDecoration(
-                  hintText: 'Subtitulo da tarefa',
+                  hintText: 'Descrição da tarefa',
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return 'Informe o subtitulo da tarefa!';
+                    return 'Informe a descrição da tarefa!';
                   }
                   descricao = value;
                 },
