@@ -1,12 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:lista_tarefas/tarefas/tarefa.dart';
+import 'package:lista_tarefas/tarefas/model/tarefa.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'cadastro/cadastro-tarefa-page.dart';
-import 'info-tarefa-page.dart';
+import '../cadastro/cadastro-tarefa-page.dart';
+import '../detalhes/info-tarefa-page.dart';
 
 class ListaTarefas extends StatelessWidget {
   final _random = Random();

@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../tarefa.dart';
+import '../model/tarefa.dart';
 
 class BotaoExcluir extends StatelessWidget {
   Tarefa? tarefa;
+  double? largura;
 
-  BotaoExcluir({required this.tarefa});
+  BotaoExcluir({required this.tarefa, required this.largura});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 100,
+        width: largura,
         child: ElevatedButton(
           onPressed: () => showDialog<String>(
             context: context,

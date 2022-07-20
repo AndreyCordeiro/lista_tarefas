@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../tarefa.dart';
+import '../model/tarefa.dart';
 import 'edicao-tarefa-widget.dart';
 
 class EdicaoTarefaPage extends StatefulWidget {

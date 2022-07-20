@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../info-tarefa-page.dart';
-import '../tarefa.dart';
+import '../detalhes/info-tarefa-page.dart';
+import '../model/tarefa.dart';
 import 'edicao-tarefa-page.dart';
 
 class EditarTarefa extends State<EdicaoTarefaPage> {
