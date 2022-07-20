@@ -28,7 +28,7 @@ class BotaoExcluir extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    _excluir(tarefa!.nome, tarefa!.descricao);
+                    _excluir(tarefa!.id);
                     Navigator.pop(context, 'OK');
                   },
                   child: const Text('OK'),
@@ -43,15 +43,15 @@ class BotaoExcluir extends StatelessWidget {
     );
   }
 
-  Future<int?> _excluir(String nome, String descricao) async {
+  Future<int?> _excluir(int? id) async {
     String path = join(await getDatabasesPath(), 'task_list');
     Database dataBase = await openDatabase(path, version: 1);
 
     String sql;
     Future<int> delete;
 
-    sql = "DELETE FROM tarefa WHERE nome = ? and descricao = ?";
-    delete = dataBase.rawInsert(sql, [nome, descricao]);
+    sql = "DELETE FROM tarefa WHERE id = ?";
+    delete = dataBase.rawInsert(sql, [id]);
 
     return delete;
   }

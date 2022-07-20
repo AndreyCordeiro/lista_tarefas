@@ -27,6 +27,7 @@ class ListaTarefas extends StatelessWidget {
             itemBuilder: (context, index) {
               var tarefa = listaTarefas[index];
               Tarefa task = Tarefa(
+                  id: tarefa['id'],
                   nome: tarefa['nome'].toString(),
                   descricao: tarefa['descricao'].toString());
 
@@ -79,7 +80,7 @@ class ListaTarefas extends StatelessWidget {
       onCreate: (db, version) async {
         db.execute('''
           CREATE TABLE tarefa (
-          id INT PRIMARY KEY,
+          id INTEGER PRIMARY KEY,
           nome TEXT NOT NULL,
           descricao TEXT NOT NULL)
         ''');
@@ -102,7 +103,7 @@ class ListaTarefas extends StatelessWidget {
       },
     );
     List<Map<String, Object?>> retorno =
-        await dataBase.rawQuery('SELECT * FROM tarefa');
+    await dataBase.rawQuery('SELECT * FROM tarefa');
     return retorno;
   }
 }

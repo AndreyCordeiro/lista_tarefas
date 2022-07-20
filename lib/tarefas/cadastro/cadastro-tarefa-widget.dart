@@ -6,6 +6,7 @@ import 'package:sqflite/sqflite.dart';
 class CadastroTarefa extends State<CadastroTarefaPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  dynamic id;
   String? nome;
   String? descricao;
 
@@ -56,7 +57,7 @@ class CadastroTarefa extends State<CadastroTarefaPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        _salvar(nome!, descricao!);
+                        _salvar(nome!, descricao!, id);
                       }
                     },
                     child: const Text('Salvar'),

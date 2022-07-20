@@ -30,17 +30,4 @@ class BotaoEditar extends StatelessWidget {
       ),
     );
   }
-
-  Future<int?> _editar(String nome, String descricao) async {
-    String path = join(await getDatabasesPath(), 'task_list');
-    Database dataBase = await openDatabase(path, version: 1);
-
-    String sql;
-    Future<int> editar;
-
-    sql = "UPDATE tarefa SET nome = ? and descricao = ?";
-    editar = dataBase.rawUpdate(sql, [nome, descricao]);
-
-    return editar;
-  }
 }

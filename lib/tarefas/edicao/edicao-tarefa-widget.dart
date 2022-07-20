@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../info-tarefa-page.dart';
 import '../tarefa.dart';
 import 'edicao-tarefa-page.dart';
 
@@ -33,6 +34,7 @@ class EditarTarefa extends State<EdicaoTarefaPage> {
                     return 'Informe o nome da tarefa!';
                   }
                   nome = value;
+                  return null;
                 },
               ),
             ),
@@ -45,6 +47,7 @@ class EditarTarefa extends State<EdicaoTarefaPage> {
                     return 'Informe a descrição da tarefa!';
                   }
                   descricao = value;
+                  return null;
                 },
               ),
             ),
@@ -56,7 +59,7 @@ class EditarTarefa extends State<EdicaoTarefaPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        _salvar(nome!, descricao!);
+                        _atualizar(nome!, descricao!, tarefa.id);
                       }
                     },
                     child: const Text('Salvar'),
@@ -70,20 +73,16 @@ class EditarTarefa extends State<EdicaoTarefaPage> {
     );
   }
 
-  Future<int> _salvar(String nome, String descricao, [int? id]) async {
+  Future<int> _atualizar(String nome, String descricao, [int? id]) async {
     String path = join(await getDatabasesPath(), 'task_list');
     Database dataBase = await openDatabase(path, version: 1);
 
     String sql;
     Future<int> linhasAfetadas;
 
-    if (id == null) {
-      sql = "INSERT INTO tarefa (nome, descricao) VALUES (?, ?)";
-      linhasAfetadas = dataBase.rawInsert(sql, [nome, descricao]);
-    } else {
-      sql = "UPDATE tarefa SET nome = ?, descricao = ? WHERE id = ?";
-      linhasAfetadas = dataBase.rawInsert(sql, [nome, descricao]);
-    }
+    sql = "UPDATE tarefa SET nome = ?, descricao = ? WHERE id = ?";
+    linhasAfetadas = dataBase.rawInsert(sql, [nome, descricao, id]);
+
     return linhasAfetadas;
   }
 }
