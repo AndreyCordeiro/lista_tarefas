@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lista_tarefas/tarefas/tarefa.dart';
 import 'package:path/path.dart';
@@ -7,6 +9,8 @@ import 'cadastro/cadastro-tarefa-page.dart';
 import 'info-tarefa-page.dart';
 
 class ListaTarefas extends StatelessWidget {
+  final _random = Random();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +40,8 @@ class ListaTarefas extends StatelessWidget {
                 margin: const EdgeInsets.all(8),
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.pinkAccent,
+                    backgroundColor: Colors.primaries[_random.nextInt(Colors.primaries.length)]
+                    [_random.nextInt(9) * 100],
                     child: Text(listaTarefas[index]["nome"]
                         .toString()
                         .substring(0, 1)
@@ -103,7 +108,7 @@ class ListaTarefas extends StatelessWidget {
       },
     );
     List<Map<String, Object?>> retorno =
-    await dataBase.rawQuery('SELECT * FROM tarefa');
+        await dataBase.rawQuery('SELECT * FROM tarefa');
     return retorno;
   }
 }
