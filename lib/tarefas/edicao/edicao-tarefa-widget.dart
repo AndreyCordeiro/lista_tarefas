@@ -60,6 +60,7 @@ class EditarTarefa extends State<EdicaoTarefaPage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _atualizar(nome!, descricao!, tarefa.id);
+                        Navigator.pop(context);
                       }
                     },
                     child: const Text('Salvar'),

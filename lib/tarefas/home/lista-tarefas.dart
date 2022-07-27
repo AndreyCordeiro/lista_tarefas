@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lista_tarefas/tarefas/model/tarefa.dart';
 import 'package:path/path.dart';
@@ -7,8 +8,14 @@ import 'package:sqflite/sqflite.dart';
 
 import '../cadastro/cadastro-tarefa-page.dart';
 import '../detalhes/info-tarefa-page.dart';
+import '../detalhes/info-tarefa-widget.dart';
 
-class ListaTarefas extends StatelessWidget {
+class ListaTarefas extends StatefulWidget {
+  @override
+  State<ListaTarefas> createState() => _listaTarefasReativa();
+}
+
+class _listaTarefasReativa extends State<ListaTarefas> {
   final _random = Random();
 
   @override
@@ -40,8 +47,9 @@ class ListaTarefas extends StatelessWidget {
                 margin: const EdgeInsets.all(8),
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.primaries[_random.nextInt(Colors.primaries.length)]
-                    [_random.nextInt(9) * 100],
+                    backgroundColor: Colors
+                            .primaries[_random.nextInt(Colors.primaries.length)]
+                        [_random.nextInt(9) * 100],
                     child: Text(listaTarefas[index]["nome"]
                         .toString()
                         .substring(0, 1)
@@ -54,9 +62,9 @@ class ListaTarefas extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => InfoTarefaPage(task),
+                        builder: (context) => InfoTarefaWidget(tarefa: task),
                       ),
-                    );
+                    ).then((value) => setState(() {}));
                   },
                 ),
               );

@@ -31,6 +31,7 @@ class BotaoExcluir extends StatelessWidget {
                   onPressed: () {
                     _excluir(tarefa!.id);
                     Navigator.pop(context, 'OK');
+                    Navigator.pop(context);
                   },
                   child: const Text('OK'),
                 ),
